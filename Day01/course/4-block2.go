@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-var packageVar string = "package Var"
+//var packageVar string = "package Var"
 
 func main() {
 	var packageVar string = "func Package Var"

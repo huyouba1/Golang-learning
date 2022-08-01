@@ -22,9 +22,8 @@ func main() {
 
 	var 我的名字 = "huyouba1"    //可以
 	var _myname = "huyouba1" //可以
-	var
-	0
-	name = "huyouba1"        //不可以
-	var package = "huyouba1" //不可以
+	//var 0name = "huyouba1"        //不可以
+	//var package = "huyouba1" //不可以
 	fmt.Println(my, My)
+	fmt.Println(我的名字, _myname)
 }
