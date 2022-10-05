@@ -16,12 +16,15 @@ func main() {
 	// {B,2},{D,2} => 稳定的
 	// {D,2},{B,2} => 不稳定的
 	sort.Slice(stats,
-		func(i, j int) bool {
-			return stats[i][1] > stats[j][1]
-		})
+		func(i, j int) bool { return stats[i][1] > stats[j][1] })
 	fmt.Println(stats)
 	//sort.SliceStable()
 
+	// 必须是升序
 	// 升序
-	index := sort.Search()
+	index := sort.Search(len(stats), func(i int) bool {
+		return stats[i][1] <= 1
+	})
+	fmt.Println(index)
+
 }
