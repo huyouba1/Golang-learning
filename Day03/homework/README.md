@@ -1,5 +1,15 @@
 1. 知识整理
 2. "我有一个梦想" 中出现次数最多的top 10 字符及出现此处
+```go
+map[rune]int{
+	'a':10,
+	'b':4,
+	'c':20,
+	'd':2
+}
+slice => [][]int{{'a',10},{'b',4},{'c',20},{'d':5}}
+sort.Sort(slice,func(i,j){return slice[i] > slice[j]})
+```
 3. 统计
 
 ```go
@@ -16,9 +26,9 @@ int[][4]string{
 }
 
 key: map 必须是可以使用==进行比较的数据类型
-key数据类型, ip+url => string key
-            []string{ip,url}
-            [2]string{ip,url}
+key数据类型, ip+url => string key  可以比较
+            []string{ip,url}  不可以比较
+            [2]string{ip,url}  可以比较
 ```
 
 4. todo管理
