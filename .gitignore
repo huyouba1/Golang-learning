@@ -1,2 +1,5 @@
 ./pkg
 .DS_Store
+pkg
+*.pkg/*
+pkg/*
