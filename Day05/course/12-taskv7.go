@@ -43,7 +43,7 @@ func main() {
 
 	user := NewUser(1, "kk", "", "")
 	task := NewTask(1, "完成知识整理", &start, &end, user)
-	task.User.SetAddr("北京")
-	task.User.SetName("大圈")
-	fmt.Printf("%#v\n", task)
+	task.SetAddr("北京") // task.User.SetAddr
+	task.SetName("大圈") // task.User.SetName
+	fmt.Printf("%#v\n", task.User)
 }
