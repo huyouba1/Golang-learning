@@ -60,7 +60,7 @@ func main() {
 		return strings.HasSuffix(path, ".go")
 	}, func(path string) {
 		fmt.Println("filepath:", path)
-		fmt.Println("Content:", Readfile(path))
+		//fmt.Println("Content:", Readfile(path))
 	})
 }
 
