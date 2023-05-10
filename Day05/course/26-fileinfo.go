@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fileinfo, _ := os.Stat("password")
+	fileinfo, _ := os.Stat("password.txt")
 	fmt.Println(fileinfo.Name())
 	fmt.Println(fileinfo.Mode())
 	fmt.Println(fileinfo.IsDir())

@@ -12,6 +12,6 @@ func main() {
 	}
 
 	defer file.Close()
-	names, err := file.Readdirnames(-1)
+	names, err := file.Readdirnames(-1) // 字符串的切片
 	fmt.Println(names, err)
 }

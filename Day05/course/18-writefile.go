@@ -13,4 +13,6 @@ func main() {
 	file.Write([]byte("abc123456"))
 	file.Write([]byte("abc123456"))
 	file.Write([]byte("abc123456"))
+	file.WriteString("writerstring")
+
 }

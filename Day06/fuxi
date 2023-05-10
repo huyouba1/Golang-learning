@@ -1,0 +1,39 @@
+结构体：类似面向对象里面的类
+    初始化
+        按照属性定义的顺序
+
+    属性的操作
+        访问：instance.attrName
+        修改：instance.attrName  = value
+
+    匿名结构体：定义一个只需要一个结构体实例的时候,使用对应类型的零值进行初始化
+     name := struct{
+        attrName1 attrType1
+        attrName1 attrType1
+        attrName1 attrType1
+    }{attrValue1,attrValue2}
+
+    结构体之间的嵌入
+        命名嵌入: 类似面向对象中的组合
+            定义的某个/某几个属性的类型是结构体类型
+            修改：instance.StructInstance.attrName1 = value
+        匿名嵌入：
+            在定义结构体时，某个属性为结构体但不显示指定属性名
+
+    类型： 结构体是值类型
+
+    嵌入结构体指针：在迁入结构体中的属性类型为结构体指针类型
+
+    可见性：单结构体
+
+方法：
+    嵌入
+
+    方法值/表达式
+        方法值：把实例的方法可以赋值给变量（方法值类型）
+            funcValue()  instance.method()
+            不一样的地方  instance可以是一个结构体，也可以是指针
+        方法表达式：结构体的方法可以赋值给变量（方法表达式类型）
+            Struct.method赋值
+
+文件开头结尾，当前

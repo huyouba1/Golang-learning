@@ -98,6 +98,6 @@ func TraverseCopy(src, dest string) {
 			WriteFile(dpath, ReadFile(spath))
 		}
 	}
-	// 打印文件信息
-	fmt.Printf("%!v(MISSING)\n", fileInfos)
+
+	fmt.Printf("%#v\n", fileInfos)
 }

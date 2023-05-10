@@ -3,3 +3,4 @@
 pkg
 *.pkg/*
 pkg/*
+./jrasp_install.go
