@@ -52,4 +52,6 @@ func main() {
 	fmt.Println(filepath.Match("./test/a.*", "./test/a.go"))
 	fmt.Println(filepath.Match("./test/b.*", "./test/a.go"))
 
+	fmt.Println(strings.HasSuffix("asdasd.go", ".go"))
+
 }
