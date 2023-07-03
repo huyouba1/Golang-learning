@@ -72,7 +72,7 @@ func PrintConfigV2(sender Sender) {
 	// 需要将sender转换为结构体对象
 	// 获取类型
 	// 类型查询
-	// .(tyoe) 只能用在switch case中
+	// .(type) 只能用在switch case中
 	switch v := sender.(type) {
 	case EmailSender:
 		fmt.Printf("v2: smtp服务器地址：%s\n", v.addr)
