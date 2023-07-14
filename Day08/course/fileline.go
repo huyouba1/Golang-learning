@@ -45,7 +45,6 @@ func main() {
 	var wg sync.WaitGroup
 
 	channel := make(chan int, 10)
-
 	// 遍历文件夹，计算每个go文件的行数并计算总数
 	filepath.Walk(dir, func(path string, info fs.FileInfo, err error) error {
 		if !info.IsDir() && ".go" == filepath.Ext(path) {
@@ -56,21 +55,38 @@ func main() {
 					1. 主例程结束之后，工作例程还在执行
 				*/
 				cnt := fileLine(path)
-				total += cnt
+				//total += cnt
 				channel <- cnt
 				wg.Done()
 			}()
 		}
 		return nil
 	})
+
+	//var wgTotal sync.WaitGroup
+	//wgTotal.Add(1)
+	exit := make(chan struct{})
+	go func() {
+		for cnt := range channel {
+			total += cnt
+		}
+		//wgTotal.Done()
+		exit <- struct{}{}
+	}()
+
 	//fmt.Println(fileLine("4-account.go"))
+	//for <- channel
 	wg.Wait()
+	close(channel)
+
+	//wgTotal.Wait()
+	<-exit
 	fmt.Println(total)
 
 	// a. walk 之前 x
-	// b. wait 之前
-	// c. wait 之后
-	// d. walk 之前,goroutine
-	// b. wait 之前,goroutine
+	// b. wait 之前 x
+	// c. wait 之后 x
+	// d. walk 之前,goroutine v
+	// b. wait 之前,goroutine v
 	// c. wait 之后,goroutine
 }
