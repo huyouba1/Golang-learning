@@ -1,0 +1,123 @@
+2023/08/02 14:57:25 dial tcp 127.0.0.1:0: connect: can't assign requested address
+2023/08/02 15:00:03 connected fileserver....
+2023/08/02 16:31:41 connected fileserver....
+2023/08/02 16:31:42 read size err: %!s(<nil>)
+2023/08/02 16:31:42 read filename err: %!s(<nil>)
+2023/08/02 16:31:42 read filename err: %!s(<nil>)
+2023/08/02 16:31:42 read filename err: %!s(<nil>)
+2023/08/02 16:31:42 read filename err: %!s(<nil>)
+2023/08/02 16:31:42 read filename err: %!s(<nil>)
+2023/08/02 16:32:07 dial tcp 127.0.0.1:9999: connect: connection refused
+2023/08/02 16:32:40 connected fileserver....
+2023/08/02 16:32:41 read size err: %!s(<nil>)
+2023/08/02 16:32:41 read filename err: %!s(<nil>)
+2023/08/02 16:32:41 read filename err: %!s(<nil>)
+2023/08/02 16:32:41 read filename err: %!s(<nil>)
+2023/08/02 16:32:41 read filename err: %!s(<nil>)
+2023/08/02 16:32:41 read filename err: %!s(<nil>)
+2023/08/02 16:35:25 read size err: %!s(<nil>)
+2023/08/02 16:35:25 read filename err: %!s(<nil>)
+2023/08/02 16:35:25 read filename err: %!s(<nil>)
+2023/08/02 16:35:25 read filename err: %!s(<nil>)
+2023/08/02 16:35:25 read filename err: %!s(<nil>)
+2023/08/02 16:35:25 read filename err: %!s(<nil>)
+2023/08/02 16:35:32 connected fileserver....
+2023/08/02 16:35:34 read size err: %!s(<nil>)
+2023/08/02 16:35:34 read filename err: %!s(<nil>)
+2023/08/02 16:35:34 read filename err: %!s(<nil>)
+2023/08/02 16:35:34 read filename err: %!s(<nil>)
+2023/08/02 16:35:34 read filename err: %!s(<nil>)
+2023/08/02 16:35:34 read filename err: %!s(<nil>)
+2023/08/03 14:50:13 connected fileserver....
+2023/08/03 14:50:14 read size err: %!s(<nil>)
+2023/08/03 14:50:14 read filename err: %!s(<nil>)
+2023/08/03 14:50:14 read filename err: %!s(<nil>)
+2023/08/03 14:50:14 read filename err: %!s(<nil>)
+2023/08/03 14:50:14 read filename err: %!s(<nil>)
+2023/08/03 14:50:14 read filename err: %!s(<nil>)
+2023/08/03 15:11:05 connected fileserver....
+2023/08/03 15:11:07 cat sizeText Readstring err <nil>
+2023/08/03 15:11:12 cat sizeText Readstring err <nil>
+2023/08/03 15:11:12 cat read content  err <nil>
+2023/08/03 15:17:51 connected fileserver....
+2023/08/03 15:17:53 read size err: %!s(<nil>)
+2023/08/03 15:17:53 read filename err: %!s(<nil>)
+2023/08/03 15:17:53 read filename err: %!s(<nil>)
+2023/08/03 15:17:53 read filename err: %!s(<nil>)
+2023/08/03 15:17:53 read filename err: %!s(<nil>)
+2023/08/03 15:17:53 read filename err: %!s(<nil>)
+2023/08/03 15:18:08 connected fileserver....
+2023/08/03 15:18:14 read size err: %!s(<nil>)
+2023/08/03 15:18:14 read filename err: %!s(<nil>)
+2023/08/03 15:18:14 read filename err: %!s(<nil>)
+2023/08/03 15:18:14 read filename err: %!s(<nil>)
+2023/08/03 15:18:14 read filename err: %!s(<nil>)
+2023/08/03 15:18:14 read filename err: %!s(<nil>)
+2023/08/03 15:18:17 read size err: %!s(<nil>)
+2023/08/03 15:18:17 read filename err: %!s(<nil>)
+2023/08/03 15:18:17 read filename err: %!s(<nil>)
+2023/08/03 15:18:17 read filename err: %!s(<nil>)
+2023/08/03 15:18:17 read filename err: %!s(<nil>)
+2023/08/03 15:18:17 read filename err: %!s(<nil>)
+2023/08/03 15:19:38 connected fileserver....
+2023/08/03 15:19:38 read size err: %!s(<nil>)
+2023/08/03 15:19:38 read filename err: %!s(<nil>)
+2023/08/03 15:19:38 read filename err: %!s(<nil>)
+2023/08/03 15:19:38 read filename err: %!s(<nil>)
+2023/08/03 15:19:38 read filename err: %!s(<nil>)
+2023/08/03 15:19:38 read filename err: %!s(<nil>)
+2023/08/03 15:19:46 connected fileserver....
+2023/08/08 16:17:49 connected fileserver....
+2023/08/08 16:26:13 connected fileserver....
+2023/08/08 16:26:14 read size err: %!s(<nil>)
+2023/08/08 16:26:14 read filename err: %!s(<nil>)
+2023/08/08 16:26:14 read filename err: %!s(<nil>)
+2023/08/08 16:26:14 read filename err: %!s(<nil>)
+2023/08/08 16:26:14 read filename err: %!s(<nil>)
+2023/08/08 16:26:14 read filename err: %!s(<nil>)
+2023/08/08 16:26:23 connected fileserver....
+2023/08/08 16:26:37 read size err: read tcp 127.0.0.1:52455->127.0.0.1:9999: read: connection reset by peer
+2023/08/08 16:28:41 connected fileserver....
+2023/08/08 16:28:42 read size err: %!s(<nil>)
+2023/08/08 16:28:42 read filename err: %!s(<nil>)
+2023/08/08 16:28:42 read filename err: %!s(<nil>)
+2023/08/08 16:28:42 read filename err: %!s(<nil>)
+2023/08/08 16:28:42 read filename err: %!s(<nil>)
+2023/08/08 16:28:42 read filename err: %!s(<nil>)
+2023/08/08 16:28:51 connected fileserver....
+2023/08/08 16:28:55 read size err: %!s(<nil>)
+2023/08/08 16:28:55 read filename err: %!s(<nil>)
+2023/08/08 16:28:55 read filename err: %!s(<nil>)
+2023/08/08 16:28:55 read filename err: %!s(<nil>)
+2023/08/08 16:28:55 read filename err: %!s(<nil>)
+2023/08/08 16:28:55 read filename err: %!s(<nil>)
+2023/08/08 16:29:01 connected fileserver....
+2023/08/08 16:29:04 read size err: %!s(<nil>)
+2023/08/08 16:29:04 read filename err: %!s(<nil>)
+2023/08/08 16:29:04 read filename err: %!s(<nil>)
+2023/08/08 16:29:04 read filename err: %!s(<nil>)
+2023/08/08 16:29:04 read filename err: %!s(<nil>)
+2023/08/08 16:29:04 read filename err: %!s(<nil>)
+2023/08/08 16:30:10 connected fileserver....
+2023/08/08 16:30:18 connected fileserver....
+2023/08/08 16:30:22 read size err: %!s(<nil>)
+2023/08/08 16:30:22 read filename err: %!s(<nil>)
+2023/08/08 16:30:22 read filename err: %!s(<nil>)
+2023/08/08 16:30:22 read filename err: %!s(<nil>)
+2023/08/08 16:30:22 read filename err: %!s(<nil>)
+2023/08/08 16:30:22 read filename err: %!s(<nil>)
+2023/08/08 16:30:24 read size err: %!s(<nil>)
+2023/08/08 16:30:24 read filename err: %!s(<nil>)
+2023/08/08 16:30:24 read filename err: %!s(<nil>)
+2023/08/08 16:30:24 read filename err: %!s(<nil>)
+2023/08/08 16:30:24 read filename err: %!s(<nil>)
+2023/08/08 16:30:24 read filename err: %!s(<nil>)
+2023/08/14 17:15:40 dial tcp 127.0.0.1:9999: connect: connection refused
+2023/08/14 17:15:46 dial tcp 127.0.0.1:9999: connect: connection refused
+2023/08/14 17:16:01 connected fileserver....
+2023/08/14 17:16:03 read size err: %!s(<nil>)
+2023/08/14 17:16:03 read filename err: %!s(<nil>)
+2023/08/14 17:16:03 read filename err: %!s(<nil>)
+2023/08/14 17:16:03 read filename err: %!s(<nil>)
+2023/08/14 17:16:03 read filename err: %!s(<nil>)
+2023/08/14 17:16:06 cat sizeText Readstring err <nil>
