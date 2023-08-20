@@ -4,3 +4,4 @@ pkg
 *.pkg/*
 pkg/*
 ./jrasp_install.go
+/Users/v_zhenxiyao/Desktop/Golang/go7/projects/cloud-station/unit_test.env
