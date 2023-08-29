@@ -3,8 +3,9 @@ package aliyun_test
 import (
 	"cloud-station/store"
 	"cloud-station/store/aliyun"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var (

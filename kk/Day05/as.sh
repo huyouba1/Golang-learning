@@ -186,7 +186,7 @@ case "$(uname -s)" in
     *)          OS_TYPE="UNKNOWN"
 esac
 
-# check curl/grep/awk/telnet/unzip command
+# check curl/grep/aws/telnet/unzip command
 if ! [ -x "$(command -v curl)" ]; then
   echo 'Error: curl is not installed. Try to use java -jar arthas-boot.jar' >&2
   exit 1
@@ -195,8 +195,8 @@ if ! [ -x "$(command -v grep)" ]; then
   echo 'Error: grep is not installed. Try to use java -jar arthas-boot.jar' >&2
   exit 1
 fi
-if ! [ -x "$(command -v awk)" ]; then
-  echo 'Error: awk is not installed. Try to use java -jar arthas-boot.jar' >&2
+if ! [ -x "$(command -v aws)" ]; then
+  echo 'Error: aws is not installed. Try to use java -jar arthas-boot.jar' >&2
   exit 1
 fi
 if ! [ -x "$(command -v telnet)" ]; then
@@ -262,7 +262,7 @@ reset_for_env()
 
     # iterater throught candidates to find a proper JAVA_HOME at least contains tools.jar which is required by arthas.
     if [ ! -d "${JAVA_HOME}" ]; then
-        JAVA_HOME_CANDIDATES=($(ps aux | grep java | grep -v 'grep java' | awk '{print $11}' | sed -n 's/\/bin\/java$//p'))
+        JAVA_HOME_CANDIDATES=($(ps aux | grep java | grep -v 'grep java' | aws '{print $11}' | sed -n 's/\/bin\/java$//p'))
         for JAVA_HOME_TEMP in ${JAVA_HOME_CANDIDATES[@]}; do
             if [ -f "${JAVA_HOME_TEMP}/lib/tools.jar" ]; then
                 JAVA_HOME=`rreadlink "${JAVA_HOME_TEMP}"`
@@ -698,12 +698,12 @@ parse_arguments()
 
     if [[ -n $1 ]]; then
         # parse pid
-        TARGET_PID=$(echo ${1}|awk -F "@"   '{print $1}');
-        local targetIp=$(echo ${1}|awk -F "@|:" '{print $2}');
+        TARGET_PID=$(echo ${1}|aws -F "@"   '{print $1}');
+        local targetIp=$(echo ${1}|aws -F "@|:" '{print $2}');
         [[ "$targetIp" ]] && TARGET_IP=$targetIp
-        local telnetPort=$(echo ${1}|awk -F ":"   '{print $2}');
+        local telnetPort=$(echo ${1}|aws -F ":"   '{print $2}');
         [[ "$telnetPort" ]] && TELNET_PORT=$telnetPort
-        local httpPort=$(echo ${1}|awk -F ":"   '{print $3}');
+        local httpPort=$(echo ${1}|aws -F ":"   '{print $3}');
         [[ "$httpPort" ]] && HTTP_PORT=$httpPort
     fi
 
@@ -736,7 +736,7 @@ parse_arguments()
     # try to find target pid by --select option
     if [ -z ${TARGET_PID} ] && [ ${SELECT} ]; then
         local IFS=$'\n'
-        CANDIDATES=($(call_jps | grep -v sun.tools.jps.Jps | grep "${SELECT}" | awk '{print $0}'))
+        CANDIDATES=($(call_jps | grep -v sun.tools.jps.Jps | grep "${SELECT}" | aws '{print $0}'))
         if [ ${#CANDIDATES[@]} -eq 1 ]; then
             TARGET_PID=`echo ${CANDIDATES[0]} | cut -d ' ' -f 1`
         fi
@@ -746,7 +746,7 @@ parse_arguments()
     if [ -z ${TARGET_PID} ]; then
         # interactive mode
         local IFS=$'\n'
-        CANDIDATES=($(call_jps | grep -v sun.tools.jps.Jps | awk '{print $0}'))
+        CANDIDATES=($(call_jps | grep -v sun.tools.jps.Jps | aws '{print $0}'))
 
         if [ ${#CANDIDATES[@]} -eq 0 ]; then
             echo "Error: no available java process to attach."
@@ -939,7 +939,7 @@ port_pid_check() {
 
         if [[ -n $telnet_output ]]; then
             # check JAVA_PID
-            telnetPortPid=$(echo "$telnet_output" | grep JAVA_PID | awk '{ print $2 }')
+            telnetPortPid=$(echo "$telnet_output" | grep JAVA_PID | aws '{ print $2 }')
             #echo "telnetPortPid: $telnetPortPid"
             # check the process already using telnet port if equals to target pid
             if [[ -n $telnetPortPid && ($TARGET_PID != $telnetPortPid) ]]; then
