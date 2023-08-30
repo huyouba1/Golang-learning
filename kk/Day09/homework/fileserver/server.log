@@ -1,24 +1,24 @@
-2023/08/14 16:38:09 listen on: :8888
+2023/08/14 16:38:09 listenr on: :8888
 2023/08/14 16:38:20 client conneceted: [::1]:62543
 2023/08/14 16:38:22 Client closed: [::1]:62543
-2023/08/14 16:45:45 listen on: :8888
+2023/08/14 16:45:45 listenr on: :8888
 2023/08/14 16:45:48 client conneceted: [::1]:64570
 2023/08/14 16:45:53 Client closed: [::1]:64570
-2023/08/14 17:10:44 listen on: :8888
+2023/08/14 17:10:44 listenr on: :8888
 2023/08/14 17:11:20 client conneceted: [::1]:55116
 2023/08/14 17:11:42 Client closed: [::1]:55116
-2023/08/14 17:12:56 listen on: :8888
+2023/08/14 17:12:56 listenr on: :8888
 2023/08/14 17:12:58 client conneceted: [::1]:55535
 2023/08/14 17:13:10 read op err: EOF
 2023/08/14 17:13:10 Client closed: [::1]:55535
-2023/08/14 17:15:36 listen on: :8888
+2023/08/14 17:15:36 listenr on: :8888
 2023/08/14 17:16:01 client conneceted: 127.0.0.1:56344
 2023/08/14 17:16:09 read op err: EOF
 2023/08/14 17:16:09 Client closed: 127.0.0.1:56344
-2023/08/14 17:46:17 net listen error: listen tcp :8888: bind: address already in use
-2023/08/14 17:46:48 listen on: :8888
+2023/08/14 17:46:17 net listenr error: listenr tcp :8888: bind: address already in use
+2023/08/14 17:46:48 listenr on: :8888
 2023/08/14 17:46:49 client conneceted: [::1]:65364
-2023/08/14 17:50:10 listen on: :8888
+2023/08/14 17:50:10 listenr on: :8888
 2023/08/14 17:50:14 client conneceted: [::1]:49955
 2023/08/14 17:50:23 upload create file err: open : no such file or directory 
 2023/08/14 17:50:23 File received and saved: 
