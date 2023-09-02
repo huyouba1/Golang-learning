@@ -13,6 +13,6 @@ database = "test"
 
 [log]
 level = "debug"
-dir = "logs"
+#dir = "logs"
 format = "text"
 to = "stdout"
