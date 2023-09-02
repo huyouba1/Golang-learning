@@ -2,8 +2,10 @@ package cmd
 
 import (
 	"gitee.com/go-learn/restful-api-demo-g7/apps"
+	// 注册所有的实例
+	_ "gitee.com/go-learn/restful-api-demo-g7/apps/all"
+
 	"gitee.com/go-learn/restful-api-demo-g7/apps/host/http"
-	"gitee.com/go-learn/restful-api-demo-g7/apps/host/impl"
 	"gitee.com/go-learn/restful-api-demo-g7/conf"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
@@ -32,8 +34,12 @@ var StartCmd = &cobra.Command{
 		//service := impl.NewHostServiceImpl()
 
 		// 注册HostService的实例到IOC
-		apps.HostService = impl.NewHostServiceImpl()
+		// 采用: _ "gitee.com/go-learn/restful-api-demo-g7/apps/host/impl"  完成注册
+		//apps.HostService = impl.NewHostServiceImpl()
 
+		// 如何执行HostService的config方法
+		// 因为apps.HostService 是一个host.Service的接口，并没有包含实例初始化（Config）方法
+		apps.Init()
 		// 通过 Host API handler 提供HTTP restful接口
 		api := http.NewHostHTTPHandler()
 
