@@ -7,7 +7,7 @@ import (
 )
 
 // 用于暴露host service的接口
-
+// H handler中，调用了host.Service接口
 func (H *Handler) createHost(c *gin.Context) {
 	ins := host.NewHost()
 	// 用户传递过来的参数进行解析
