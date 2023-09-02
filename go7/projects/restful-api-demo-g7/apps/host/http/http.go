@@ -1,14 +1,13 @@
 package http
 
 import (
+	"gitee.com/go-learn/restful-api-demo-g7/apps"
 	"gitee.com/go-learn/restful-api-demo-g7/apps/host"
 	"github.com/gin-gonic/gin"
 )
 
-func NewHostHTTPHandler(svc host.Service) *Handler {
-	return &Handler{
-		svc: svc,
-	}
+func NewHostHTTPHandler() *Handler {
+	return &Handler{}
 }
 
 // 通过写一个实例类，把内部的接口通过HTTP协议暴露出去
@@ -16,6 +15,14 @@ func NewHostHTTPHandler(svc host.Service) *Handler {
 // 该实体类，会实现Gin的http handler
 type Handler struct {
 	svc host.Service
+}
+
+func (h *Handler) Config() {
+	if apps.HostService == nil {
+		panic("Dependence host service required")
+	}
+	// 从 IOC 里面获取HostService的实例对象
+	h.svc = apps.HostService
 }
 
 // 只是完成了Http Handler的注册

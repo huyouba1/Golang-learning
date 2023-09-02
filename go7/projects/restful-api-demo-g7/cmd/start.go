@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"gitee.com/go-learn/restful-api-demo-g7/apps"
 	"gitee.com/go-learn/restful-api-demo-g7/apps/host/http"
 	"gitee.com/go-learn/restful-api-demo-g7/apps/host/impl"
 	"gitee.com/go-learn/restful-api-demo-g7/conf"
@@ -28,10 +29,16 @@ var StartCmd = &cobra.Command{
 		}
 
 		// 加载我们Host Service的实体类
-		service := impl.NewHostServiceImpl()
+		//service := impl.NewHostServiceImpl()
+
+		// 注册HostService的实例到IOC
+		apps.HostService = impl.NewHostServiceImpl()
 
 		// 通过 Host API handler 提供HTTP restful接口
-		api := http.NewHostHTTPHandler(service)
+		api := http.NewHostHTTPHandler()
+
+		// 从IOC中获取依赖
+		api.Config()
 
 		// 提供一个 Gin router
 		g := gin.Default()
