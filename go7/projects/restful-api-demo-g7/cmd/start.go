@@ -5,7 +5,6 @@ import (
 	// 注册所有的实例
 	_ "gitee.com/go-learn/restful-api-demo-g7/apps/all"
 
-	"gitee.com/go-learn/restful-api-demo-g7/apps/host/http"
 	"gitee.com/go-learn/restful-api-demo-g7/conf"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
@@ -39,16 +38,18 @@ var StartCmd = &cobra.Command{
 
 		// 如何执行HostService的config方法
 		// 因为apps.HostService 是一个host.Service的接口，并没有包含实例初始化（Config）方法
-		apps.Init()
+		apps.InitImpl()
 		// 通过 Host API handler 提供HTTP restful接口
-		api := http.NewHostHTTPHandler()
+		//api := http.NewHostHTTPHandler()
 
 		// 从IOC中获取依赖
-		api.Config()
+		//api.Config()
 
 		// 提供一个 Gin router
 		g := gin.Default()
-		api.Registry(g)
+		// 注册IoC的所有http handler
+		apps.InitGin(g)
+		//api.Registry(g)
 
 		return g.Run(conf.C().App.HttpAddr())
 	},
