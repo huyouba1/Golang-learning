@@ -19,7 +19,6 @@ import (
 )
 
 var (
-	version  bool
 	confFile string
 )
 
