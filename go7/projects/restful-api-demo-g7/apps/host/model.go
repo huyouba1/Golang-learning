@@ -131,6 +131,16 @@ func (req *QueryHostRequst) GetPagesize() uint {
 	return uint(req.Pagesize)
 }
 
+func NewDescribeHostRequestWithId(id string) *DescribeHostRequest {
+	return &DescribeHostRequest{
+		Id: id,
+	}
+}
+
+type DescribeHostRequest struct {
+	Id string
+}
+
 type UpdateHostRequest struct {
 	*Describe
 }

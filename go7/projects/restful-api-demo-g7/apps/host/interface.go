@@ -9,7 +9,7 @@ type Service interface {
 	// 查询主机列表
 	QueryHost(context.Context, *QueryHostRequst) (*HostSet, error)
 	// 查询主机详情
-	DescribeHost(context.Context, *QueryHostRequst) (*Host, error)
+	DescribeHost(context.Context, *DescribeHostRequest) (*Host, error)
 	// 主机更新
 	UpdateHost(context.Context, *UpdateHostRequest) (*Host, error)
 	// 主机删除,比如前端需要打印打印当前删除主机的IP或者其他信息

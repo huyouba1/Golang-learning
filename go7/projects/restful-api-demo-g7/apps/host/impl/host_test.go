@@ -42,7 +42,15 @@ func TestQuery(t *testing.T) {
 			fmt.Println(set.Items[i].Id)
 		}
 	}
+}
 
+func TestDescribe(t *testing.T) {
+	should := assert.New(t)
+	req := host.NewDescribeHostRequestWithId("ins-09")
+	ins, err := service.DescribeHost(context.Background(), req)
+	if should.NoError(err) {
+		fmt.Println(ins.Id)
+	}
 }
 
 func init() {
