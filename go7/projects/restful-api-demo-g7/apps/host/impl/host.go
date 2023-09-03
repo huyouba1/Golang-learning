@@ -3,6 +3,7 @@ package impl
 import (
 	"gitee.com/go-learn/restful-api-demo-g7/apps/host"
 	"github.com/infraboard/mcube/logger"
+	"github.com/infraboard/mcube/sqlbuilder"
 )
 import "context"
 
@@ -33,8 +34,62 @@ func (i *HostServiceImpl) CreateHost(ctx context.Context, ins *host.Host) (*host
 }
 
 func (i *HostServiceImpl) QueryHost(ctx context.Context, req *host.QueryHostRequst) (*host.HostSet, error) {
+	b := sqlbuilder.NewBuilder(QueryHostSQL)
+	if req.Keywords != "" {
+		// (r.`name`='%' OR r.description='%' OR r.private_ip='%' OR r.public_ip='%')
+		//  10.10.1, 接口测试
+		b.Where("r.`name`LIKE ? OR r.description LIKE ? OR r.private_ip LIKE ? OR r.public_ip LIKE ?",
+			"%"+req.Keywords+"%",
+			"%"+req.Keywords+"%",
+			req.Keywords+"%",
+			req.Keywords+"%",
+		)
+	}
 
-	return nil, nil
+	b.Limit(req.OffSet(), req.GetPagesize())
+	querySQL, args := b.Build()
+	i.l.Debugf("query sql: %s, args: %v", querySQL, args)
+
+	// query stmt,构建一个prepare语句来执行sql
+	stmt, err := i.db.PrepareContext(ctx, querySQL)
+	if err != nil {
+		return nil, err
+	}
+	defer stmt.Close()
+
+	rows, err := stmt.QueryContext(ctx, args...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	set := host.NewHostSet()
+	for rows.Next() {
+		// 每扫描一行，就需要读取出来
+		// r.*,h.cpu,h.memory,h.gpu_spec,h.gpu_amount,h.os_type,h.os_name,h.serial_number
+		ins := host.NewHost()
+		if err := rows.Scan(&ins.Id, &ins.Vendor, &ins.Region, &ins.CreateAt, &ins.ExpireAt,
+			&ins.Type, &ins.Name, &ins.Description, &ins.Status, &ins.UpdateAt, &ins.SyncAt,
+			&ins.Account, &ins.PublicIP, &ins.PrivateIP,
+			&ins.CPU, &ins.Memory, &ins.GPUSpec, &ins.GPUAmount, &ins.OSType, &ins.OSName, &ins.SerialNumber); err != nil {
+			return nil, err
+		}
+		set.Add(ins)
+	}
+
+	// total统计
+	conutSQL, args := b.BuildCount()
+	i.l.Debugf("count sql: %s, args: %v", conutSQL, args)
+	countStmt, err := i.db.PrepareContext(ctx, conutSQL)
+	if err != nil {
+		return nil, err
+	}
+	defer stmt.Close()
+	if err := countStmt.QueryRowContext(ctx, args...).Scan(&set.Total); err != nil {
+		return nil, err
+	}
+
+	return set, nil
 }
 
 func (i *HostServiceImpl) DescribeHost(ctx context.Context, req *host.QueryHostRequst) (*host.Host, error) {

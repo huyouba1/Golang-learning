@@ -32,6 +32,19 @@ func TestCreate(t *testing.T) {
 	}
 }
 
+func TestQuery(t *testing.T) {
+	should := assert.New(t)
+	req := host.NewQueryHostRequst()
+	req.Keywords = "接口测试"
+	set, err := service.QueryHost(context.Background(), req)
+	if should.NoError(err) {
+		for i := range set.Items {
+			fmt.Println(set.Items[i].Id)
+		}
+	}
+
+}
+
 func init() {
 	// 测试用例的配置文件
 	//err := conf.LoadConfigFromToml("/Users/v_zhenxiyao/Desktop/Golang/go7/projects/restful-api-demo-g7/etc/demo.toml")
@@ -45,5 +58,4 @@ func init() {
 	fmt.Println(zap.DevelopmentSetup())
 	// host service 的具体实现
 	service = impl.NewHostServiceImpl()
-
 }

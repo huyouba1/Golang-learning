@@ -27,3 +27,17 @@ func (H *Handler) createHost(c *gin.Context) {
 	}
 	response.Success(c.Writer, ins)
 }
+
+func (H *Handler) queryHost(c *gin.Context) {
+	// 从http请求的query string中获取参数
+	req := host.NewQueryHostFromHTTP(c.Request)
+
+	// 进行接口调用，返回肯定有成功或者失败
+	set, err := H.svc.QueryHost(c.Request.Context(), req)
+	if err != nil {
+		response.Failed(c.Writer, err)
+		return
+	}
+
+	response.Success(c.Writer, set)
+}
