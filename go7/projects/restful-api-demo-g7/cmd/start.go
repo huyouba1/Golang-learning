@@ -3,13 +3,17 @@ package cmd
 import (
 	"fmt"
 	"gitee.com/go-learn/restful-api-demo-g7/apps"
+	"gitee.com/go-learn/restful-api-demo-g7/protocol"
+	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/logger/zap"
+	"os"
+	"os/signal"
+	"syscall"
 
 	// 注册所有的实例
 	_ "gitee.com/go-learn/restful-api-demo-g7/apps/all"
 
 	"gitee.com/go-learn/restful-api-demo-g7/conf"
-	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/spf13/cobra"
 )
@@ -53,14 +57,48 @@ var StartCmd = &cobra.Command{
 		// 从IOC中获取依赖
 		//api.Config()
 
-		// 提供一个 Gin router
-		g := gin.Default()
-		// 注册IoC的所有http handler
-		apps.InitGin(g)
-		//api.Registry(g)
+		//// 提供一个 Gin router
+		//g := gin.Default()
+		//// 注册IoC的所有http handler
+		//apps.InitGin(g)
+		////api.Registry(g)
+		//g.Run(conf.C().App.HttpAddr())
+		svc := NewManager()
 
-		return g.Run(conf.C().App.HttpAddr())
+		ch := make(chan os.Signal, 1)
+		signal.Notify(ch, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGHUP, syscall.SIGINT)
+		go svc.WaitStop(ch)
+		return svc.Start()
 	},
+}
+
+func NewManager() *manager {
+	return &manager{
+		http: protocol.NewHttpService(),
+		l:    zap.L().Named("CLI"),
+	}
+}
+
+// 用于管理所有需要启动的服务
+// 1. HTTP 服务的启动
+type manager struct {
+	http *protocol.HttpService
+	l    logger.Logger
+}
+
+func (m *manager) Start() error {
+	return m.http.Start()
+}
+
+// 处理来自外部的中断信号，比如Terminal
+func (m *manager) WaitStop(ch <-chan os.Signal) {
+	for v := range ch {
+		switch v {
+		default:
+			m.l.Infof("received signal %s", v)
+			m.http.Stop()
+		}
+	}
 }
 
 // 问题：
@@ -74,7 +112,7 @@ var StartCmd = &cobra.Command{
 //      4. 如果使用了注册猪心，最后才完成下线
 //      5. 退出关闭
 
-//还没有初始化logger实例
+// 还没有初始化logger实例
 // log 为全局变量, 只需要load 即可全局可用户, 依赖全局配置先初始化
 func loadGlobalLogger() error {
 	var (
