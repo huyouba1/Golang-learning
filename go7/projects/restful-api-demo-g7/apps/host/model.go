@@ -1,6 +1,7 @@
 package host
 
 import (
+	"fmt"
 	"github.com/go-playground/validator/v10"
 	"net/http"
 	"strconv"
@@ -40,6 +41,19 @@ type Host struct {
 	*Resource
 	// 资源独有属性部分
 	*Describe
+}
+
+// 对象全量更新
+func (h *Host) Put(obj *Host) error {
+	if obj.Id != h.Id {
+		return fmt.Errorf("id not equal")
+	}
+	*h.Describe = *obj.Describe
+}
+
+// 对象局部更新
+func (h *Host) Patch(obj *Host) {
+	if obj.
 }
 
 func (h *Host) Validate() error {
@@ -141,7 +155,18 @@ type DescribeHostRequest struct {
 	Id string
 }
 
+type UPDATE_MODE string
+
+const (
+	// 全量更新
+	UPDATE_MODE_PUT UPDATE_MODE = "put"
+	// 局部更新
+	UPDATE_MODE_PATCH UPDATE_MODE = "patch"
+)
+
 type UpdateHostRequest struct {
+	Id         string      `json:"id"`
+	UpdateMode UPDATE_MODE `json:"update_mode"`
 	*Describe
 }
 

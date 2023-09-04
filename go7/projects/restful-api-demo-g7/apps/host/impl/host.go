@@ -1,6 +1,7 @@
 package impl
 
 import (
+	"fmt"
 	"gitee.com/go-learn/restful-api-demo-g7/apps/host"
 	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/sqlbuilder"
@@ -120,6 +121,26 @@ func (i *HostServiceImpl) DescribeHost(ctx context.Context, req *host.DescribeHo
 }
 
 func (i *HostServiceImpl) UpdateHost(ctx context.Context, req *host.UpdateHostRequest) (*host.Host, error) {
+	// 获取已有的对象
+	ins, err := i.DescribeHost(ctx, host.NewDescribeHostRequestWithId(req.Id))
+	if err != nil {
+		return nil, err
+	}
+	// 更新更新的模式，更新对象
+	switch req.UpdateMode {
+	case host.UPDATE_MODE_PUT:
+
+	case host.UPDATE_MODE_PATCH:
+		
+	default:
+		return nil, fmt.Errorf("update_mode only requred put/patch")
+	}
+	// 检查更新后的数据是否合法
+
+	// 更新数据库内数据
+
+	// 返回更新过后的对象
+
 	return nil, nil
 }
 

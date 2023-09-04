@@ -65,6 +65,10 @@ var StartCmd = &cobra.Command{
 		svc := NewManager()
 
 		ch := make(chan os.Signal, 1)
+		// channel是一个复合数据结构，可以党城一个容器，自定义的struct make(chan int,1000) ,8bytes
+		// 如果妈呀close gc 是不会回收的
+		defer close(ch)
+		// Go为了并发编程涉及的（CSP）
 		signal.Notify(ch, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGHUP, syscall.SIGINT)
 		go svc.WaitStop(ch)
 		return svc.Start()
