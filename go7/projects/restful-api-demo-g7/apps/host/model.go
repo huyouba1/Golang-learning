@@ -49,11 +49,19 @@ func (h *Host) Put(obj *Host) error {
 		return fmt.Errorf("id not equal")
 	}
 	*h.Describe = *obj.Describe
+	*h.Resource = *obj.Resource
+	return nil
 }
 
 // 对象局部更新
-func (h *Host) Patch(obj *Host) {
-	if obj.
+func (h *Host) Patch(obj *Host) error {
+	if obj.Name != "" {
+		h.Name = obj.OSName
+	}
+	if obj.CPU != 0 {
+		h.CPU = obj.CPU
+	}
+	return nil
 }
 
 func (h *Host) Validate() error {
@@ -164,10 +172,33 @@ const (
 	UPDATE_MODE_PATCH UPDATE_MODE = "patch"
 )
 
+func NewPutUpdateHostRequest(id string) *UpdateHostRequest {
+	h := NewHost()
+	h.Id = id
+	return &UpdateHostRequest{
+		UpdateMode: UPDATE_MODE_PUT,
+		Host:       h,
+	}
+}
+
+func NewPatchUpdateHostRequest(id string) *UpdateHostRequest {
+	h := NewHost()
+	h.Id = id
+	return &UpdateHostRequest{
+		UpdateMode: UPDATE_MODE_PATCH,
+		Host:       h,
+	}
+}
+
 type UpdateHostRequest struct {
-	Id         string      `json:"id"`
 	UpdateMode UPDATE_MODE `json:"update_mode"`
-	*Describe
+	*Host
+}
+
+func NewDeleteHostRequest(id string) *DeleteHostRequst {
+	return &DeleteHostRequst{
+		Id: id,
+	}
 }
 
 type DeleteHostRequst struct {

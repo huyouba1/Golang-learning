@@ -39,6 +39,14 @@ const (
 		resource AS r
 		LEFT JOIN host AS h ON r.id = h.resource_id
 `
+
+	updateResourceSQL = `UPDATE resource SET vendor=?,region=?,expire_at=?,name=?,description=? WHERE id = ?`
+
+	updateHostSQL = `UPDATE host SET cpu=?,memory=? WHERE resource_id = ?`
+
+	deleteResourceSQL = `DELETE FROM resource WHERE id = ?`
+
+	deleteHostSQL = `DELETE FROM host WHERE resource_id = ?`
 )
 
 //--WHERE

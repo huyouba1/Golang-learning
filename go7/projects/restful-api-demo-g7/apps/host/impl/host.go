@@ -129,21 +129,43 @@ func (i *HostServiceImpl) UpdateHost(ctx context.Context, req *host.UpdateHostRe
 	// 更新更新的模式，更新对象
 	switch req.UpdateMode {
 	case host.UPDATE_MODE_PUT:
-
+		if err := ins.Put(req.Host); err != nil {
+			return nil, err
+		}
 	case host.UPDATE_MODE_PATCH:
-		
+		if err := ins.Patch(req.Host); err != nil {
+			return nil, err
+		}
 	default:
 		return nil, fmt.Errorf("update_mode only requred put/patch")
 	}
 	// 检查更新后的数据是否合法
-
+	if err := ins.Validate(); err != nil {
+		return nil, err
+	}
 	// 更新数据库内数据
-
+	if err := i.update(ctx, ins); err != nil {
+		return nil, err
+	}
 	// 返回更新过后的对象
 
-	return nil, nil
+	return ins, nil
 }
 
 func (i *HostServiceImpl) DeleteHost(ctx context.Context, req *host.DeleteHostRequst) (*host.Host, error) {
-	return nil, nil
+	// 获取已有的对象
+	ins, err := i.DescribeHost(ctx, host.NewDescribeHostRequestWithId(req.Id))
+	if err != nil {
+		return nil, err
+	}
+	// 检查更新后的数据是否合法
+	//if err := ins.Validate();err !=nil {
+	//	return nil,err
+	//}
+
+	if err := i.delete(ctx, ins); err != nil {
+		return nil, err
+	}
+
+	return ins, nil
 }

@@ -53,6 +53,30 @@ func TestDescribe(t *testing.T) {
 	}
 }
 
+func TestUpdate(t *testing.T) {
+	should := assert.New(t)
+	req := host.NewPutUpdateHostRequest("ins-09")
+	req.Name = "更新测试01"
+	req.Region = "rg 02"
+	req.Type = "small"
+	req.CPU = 1
+	req.Memory = 2048
+	req.Description = "测试更新"
+	ins, err := service.UpdateHost(context.Background(), req)
+	if should.NoError(err) {
+		fmt.Println(ins.Id)
+	}
+}
+
+func TestDelete(t *testing.T) {
+	should := assert.New(t)
+	req := host.NewDeleteHostRequest("ins-02")
+	ins, err := service.DeleteHost(context.Background(), req)
+	if should.NoError(err) {
+		fmt.Println(ins)
+	}
+}
+
 func init() {
 	// 测试用例的配置文件
 	//err := conf.LoadConfigFromToml("/Users/v_zhenxiyao/Desktop/Golang/go7/projects/restful-api-demo-g7/etc/demo.toml")
